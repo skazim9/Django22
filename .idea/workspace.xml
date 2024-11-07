@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fd1d64a-2760-4303-9158-4f5fdc8b9f37" name="Changes" comment="add superuser">
+    <list default="true" id="6fd1d64a-2760-4303-9158-4f5fdc8b9f37" name="Changes" comment="fixture for Category and Product">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +163,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731008657792</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fixture for Category and Product">
+      <option name="closed" value="true" />
+      <created>1731009729002</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1731009729002</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -183,6 +193,7 @@
     <MESSAGE value="create models" />
     <MESSAGE value="make migrations" />
     <MESSAGE value="add superuser" />
-    <option name="LAST_COMMIT_MESSAGE" value="add superuser" />
+    <MESSAGE value="fixture for Category and Product" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixture for Category and Product" />
   </component>
 </project>
