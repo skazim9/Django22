@@ -1,0 +1,54 @@
+[
+{
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+        "name": "Iphone 15",
+        "description": "Apple",
+        "image": "",
+        "category": 1,
+        "price": "130000",
+        "created_at": null,
+        "updated_at": "2024-11-07T19:39:38.915Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "Samsung S21",
+        "description": "Samsung",
+        "image": "",
+        "category": 1,
+        "price": "110000",
+        "created_at": null,
+        "updated_at": "2024-11-07T19:40:14.032Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+        "name": "Apple Watch",
+        "description": "Apple",
+        "image": "",
+        "category": 2,
+        "price": "30000",
+        "created_at": null,
+        "updated_at": "2024-11-07T19:41:44.810Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+        "name": "MiBand",
+        "description": "Xiaomi",
+        "image": "",
+        "category": 2,
+        "price": "15000",
+        "created_at": null,
+        "updated_at": "2024-11-07T19:42:04.863Z"
+    }
+}
+]
