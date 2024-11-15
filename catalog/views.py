@@ -14,7 +14,7 @@ def index(request):
     return render(request, 'base.html')
 
 
-def product_list(request):
+def product_list(request, pk):
     products = Product.objects.all()
-    context = {"products": products}
-    return render(request, 'base.html', context)
+    context = {'products': products}
+    return render(request, 'product/product_list.html', context=context)
