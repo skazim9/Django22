@@ -10,7 +10,7 @@
       {% for prod in products %}
         <div class="col">
           <div class="card shadow-sm">
-            <img src="{{ product.image| media_filter }}" class="card-img-top" alt="{{ product.name }}">
+            <img src="{{ product.photo| media_filter }}" class="card-img-top" alt="{{ product.name }}">
             <div class="card-body">
               <p class="card-text">{{% prod.name %}: {% prod.price %}}</p>
               <p class="card-text">{{% prod.description| truncatechars:100 %}}</p>
