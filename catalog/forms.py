@@ -1,41 +1,57 @@
 from django import forms
 from .models import Product, Category
+from django.core.exceptions import ValidationError
 
 forbidden = ['казино', 'криптовалюта', 'крипта', 'биржа',
              'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
 
 
-class ProductForm(forms.Form):
+class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['title', 'content', 'image', 'created_at', 'publication_sign', 'count_of_views']
-        fields = ['name', 'description', 'image', 'category', 'price']
+        fields = ['name', 'description', 'image', 'category', 'price', 'created_at']
+
+    def __init__(self, *args, **kwargs):
+        super(ProductForm, self).__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs.update({
+            'class': 'form-control',  # Добавление CSS-класса для стилизации поля
+            'placeholder': 'Введите имя'  # Текст подсказки внутри поля
+        })
+        self.fields['description'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите описание'})
+        self.fields['image'].widget.attrs.update({'class': 'form-control'})
+        self.fields['category'].widget.attrs.update({'class': 'form-control'})
+        self.fields['price'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите цену'})
+        self.fields['created_at'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите дату'})
 
     def clean_name(self):
-        cleaned_data = super().clean()
-        name = cleaned_data.get('name')
-
+        name = self.cleaned_data.get('name')
         if any(word in name.lower() for word in forbidden):
-            raise forms.ValidationError("Название не должно содержать запрещенные слова.")
+            raise ValidationError("Название не должно содержать запрещенные слова.")
         return name
 
     def clean_description(self):
-        cleaned_data = super().clean()
-        description = cleaned_data.get('description')
-
+        description = self.cleaned_data.get('description')
         if any(word in description.lower() for word in forbidden):
-            raise forms.ValidationError("Название не должно содержать запрещенные слова.")
+            raise ValidationError("Название не должно содержать запрещенные слова.")
         return description
 
-
     def clean_price(self):
-        cleaned_data = super().clean()
-        price = cleaned_data.get('price')
+        price = self.cleaned_data.get('price')
         if price < 0:
-            raise forms.ValidationError("Неверная цена")
+            raise ValidationError("Неверная цена")
         return price
 
-class CategorytForm(forms.Form):
+    def clean_image(self):
+        image = self.cleaned_data.get('image')
+        if image:
+            if image.size > 5 * 1024 * 1025:
+                raise ValidationError("Файл больше 5МБ")
+            if not (image.name.endswith('.jpg') or image.name.endswith('.jpeg') or image.name.endswith('.png')):
+                raise ValidationError("Файл не допустимого формата")
+        return image
+
+
+class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = ['name', 'description']
