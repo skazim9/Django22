@@ -8,7 +8,7 @@ class Product(models.Model):
                               help_text='Загрузити фотографию')
     category = models.ForeignKey("Category", on_delete=models.CASCADE, verbose_name='категория',
                                  help_text='Введите категорию', blank=True, null=True)
-    price = models.IntegerField(max_length=100, verbose_name='Цена', help_text='Введите цену', blank=True, null=True)
+    price = models.IntegerField(verbose_name='Цена', help_text='Введите цену', blank=True, null=True)
     created_at = models.DateField(verbose_name='дата создания', help_text='Введите датe создания', blank=True,
                                   null=True)
     updated_at = models.DateTimeField(auto_now=True, verbose_name='дата последнего изменения', blank=True, null=True)

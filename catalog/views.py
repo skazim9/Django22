@@ -3,7 +3,9 @@ from django.shortcuts import render, get_object_or_404
 from django.views import View
 from django.urls import reverse_lazy, reverse
 from .forms import ProductForm, Category
-from django.views.generic import ListView, DetailView, CreateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 from catalog.models import Product
 
@@ -15,6 +17,8 @@ class HomeListView(ListView):
     model = Product
     template_name = 'catalog/base.html'
     context_object_name = 'products'
+
+
 
 
 def contacts(request):
@@ -37,21 +41,31 @@ class CatalogContactsView(View):
         return HttpResponse(f"Спасибо, {name}! Ваше сообщение получено.")
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     template_name = 'catalog/product_form.html'
     success_url = reverse_lazy('catalog:home')
 
 
-class ProductDetailView(DetailView):
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'catalog/product_form.html'
+    success_url = reverse_lazy("catalog:home")
+
+
+class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product
     template_name = 'catalog/product_detail.html'
     context_object_name = 'product'
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin,DeleteView):
     model = Product
     template_name = 'catalog/product_delete.html'
     success_url = reverse_lazy('catalog:home')
+
+
+
 
