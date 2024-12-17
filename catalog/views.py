@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import View
 from django.urls import reverse_lazy, reverse
 from .forms import ProductForm, Category, ProductModeratorForm
-from .services import get_products_by_category, CategoryService
+from .services import get_products_by_category, CategoryService, get_products_from_cache
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
@@ -18,6 +18,9 @@ class HomeListView(ListView):
     model = Product
     template_name = 'catalog/base.html'
     context_object_name = 'products'
+
+    def get_queryset(self):
+        return get_products_from_cache()
 
 
 def contacts(request):
